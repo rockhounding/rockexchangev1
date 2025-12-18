@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rockhounding for beginners - Rock Exchange</title>
+  <title>Rockhounding for Beginners - Rock Exchange</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -423,11 +423,92 @@
     input, select, textarea { font-size: 16px; }
     }
 
+    /* ===== LIGHT THEME OVERRIDE (paste at very bottom) ===== */
+
+    body{
+    background:#f3f6fb;
+    color:#1f2937;
+    }
+
+    h1{ color:#0f172a; }
+    p.subtitle{ color:#475569; }
+
+    .card{
+    background:#ffffff;
+    border: 1px solid #dbe3ef;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    .small-note{ color:#475569; }
+    .admin-small-note{ color:#475569; }
+
+    input[type="text"], input[type="password"], select{
+    background:#ffffff;
+    color:#111827;
+    box-shadow: inset 0 0 0 1px #cbd5e1;
+    }
+
+    textarea{
+    background:#ffffff;
+    color:#111827;
+    box-shadow: inset 0 0 0 1px #cbd5e1;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    input:focus, select:focus, textarea:focus{
+    outline:none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), inset 0 0 0 1px #2563eb;
+    }
+
+    /* Buttons: calmer, modern */
+    button{
+    background:#2563eb;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
+    }
+
+    button:hover{ background:#1d4ed8; }
+    .btn-secondary{ background:#0f766e; }
+    .btn-secondary:hover{ background:#115e59; }
+
+    .btn-danger{ background:#dc2626; }
+    .btn-danger:hover{ background:#b91c1c; }
+
+    /* Status colors for light bg */
+    .status.error{ color:#b91c1c; }
+    .status.success{ color:#166534; }
+
+    /* Result card on light bg */
+    .result-card{
+    background:#f8fafc;
+    box-shadow: inset 0 0 0 1px #dbe3ef;
+    }
+
+    .result-card strong{ color:#b45309; }
+
+    /* Table on light bg */
+    .list-table th, .list-table td{
+    border-bottom: 1px solid #e5e7eb;
+    }
+
+    .list-table th{
+    background:#f1f5f9;
+    }
+
+    /* Badges tuned for light bg */
+    .badge-not-sent{ background:#e5e7eb; color:#111827; }
+    .badge-not-approved{ background:#e2e8f0; color:#111827; }
+    .badge-no-tracking{ background:#e5e7eb; color:#111827; }
+
+    /* Your selected preview row */
+    .preview-row-selected{
+    background:#dbeafe !important;
+    }
+
   </style>
 </head>
 <body autocomplete="off">
 <div class="container">
-  <h1>Rockhounding for beginners - Rock Exchange</h1>
+  <h1>Rockhounding for Beginners - Rock Exchange</h1>
   <p class="subtitle">
     Before the deadline: sign up and mark your deposit. After assignments are generated, use your code to reveal who you are sending rocks to and submit your tracking number.
   </p>
