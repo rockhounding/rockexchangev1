@@ -279,6 +279,57 @@
     .preview-row-selected {
       background: #334155 !important;
     }
+
+    /* ===== Mobile + Modern Patch (add at VERY bottom) ===== */
+
+    /* 1) Make inputs/buttons consistent + mobile friendly */
+    input[type="text"], input[type="password"], select, textarea, button {
+    font-size: 16px; /* prevents iPhone zoom on focus */
+    }
+
+    button {
+    min-height: 44px; /* better tap target */
+    }
+
+    /* 2) Stop the "centered like a terminal window" look on phones */
+    body {
+    display: block;            /* removes the flex centering */
+    align-items: initial;
+    }
+
+    .container {
+    margin: 0 auto;
+    padding: 16px;
+    }
+
+    /* 3) Make cards breathe more on mobile */
+    .card {
+    margin-bottom: 14px;
+    padding: 16px;
+    }
+
+    /* 4) Your address grid should collapse to 1 column on phones */
+    @media (max-width: 720px) {
+    .address-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .code-row {
+        justify-content: stretch;
+    }
+
+    .code-row input,
+    .code-row select,
+    .code-row button {
+        width: 100%;
+    }
+
+    .list-table {
+        display: block;
+        overflow-x: auto;  /* tables scroll horizontally on small screens */
+        -webkit-overflow-scrolling: touch;
+    }
+    }
   </style>
 </head>
 <body autocomplete="off">
