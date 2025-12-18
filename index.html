@@ -730,21 +730,6 @@
       </form>
 
       <div id="signupStatus" class="status"></div>
-
-      <!-- Mark deposit sent -->
-      <div style="margin-top:18px;border-top:1px solid #333;padding-top:10px;">
-        <h3 style="margin:0 0 6px 0;font-size:15px;">Already signed up?</h3>
-        <p class="small-note" style="margin-top:2px;">
-          Enter the same 4-digit code you used to mark that you have sent your deposit.
-        </p>
-        <div class="code-row">
-          <label for="depositCodeInput">Your code:</label>
-          <input id="depositCodeInput" type="text" maxlength="8" autocomplete="off" inputmode="numeric"
-                 placeholder="1234" style="width:160px;">
-          <button id="markDepositBtn" class="btn-secondary">💰 Mark Deposit Sent</button>
-        </div>
-        <div id="depositStatus" class="status"></div>
-      </div>
     </div>
   </div>
   
@@ -761,7 +746,6 @@
           <th>Name</th>
           <th>State</th>
           <th>Payment Method</th>
-          <th>Deposit (User)</th>
           <th>Deposit (Admin)</th>
         </tr>
       </thead>
@@ -806,7 +790,6 @@
             <th>State</th>
             <th>Code</th>
             <th>Pay Method</th>
-            <th>User Marked?</th>
             <th>Admin Approved?</th>
             <th>Tracking #</th>
             <th>Actions</th>
@@ -1095,7 +1078,6 @@ signupForm.addEventListener("submit", async (e) => {
     signupStatus.innerHTML = `
     🎉 <strong>Signup complete!</strong><br>
     A payment page is opening in a new tab based on the method you selected.<br>
-    After sending, use your 4-digit code to mark deposit as sent.
     `;
     signupStatus.classList.add("success");
 
@@ -1107,47 +1089,6 @@ signupForm.addEventListener("submit", async (e) => {
     console.error(err);
     signupStatus.textContent = "Error saving sign-up. Please try again or contact the organizer.";
     signupStatus.classList.add("error");
-  }
-});
-
-// ========== MARK DEPOSIT SENT (BY USER CODE) ==========
-
-const depositCodeInput = document.getElementById("depositCodeInput");
-const markDepositBtn = document.getElementById("markDepositBtn");
-const depositStatus = document.getElementById("depositStatus");
-
-markDepositBtn.addEventListener("click", async () => {
-  depositStatus.textContent = "";
-  depositStatus.className = "status";
-  const code = depositCodeInput.value.trim();
-
-  if (!code) {
-    depositStatus.textContent = "Please enter your code.";
-    depositStatus.classList.add("error");
-    return;
-  }
-
-  try {
-    const snap = await db.collection("signups")
-      .where("code", "==", code)
-      .limit(1)
-      .get();
-
-    if (snap.empty) {
-      depositStatus.textContent = "No sign-up found with that code. Double-check or contact the organizer.";
-      depositStatus.classList.add("error");
-      return;
-    }
-
-    const doc = snap.docs[0];
-    await doc.ref.update({ depositSent: true });
-
-    depositStatus.textContent = "Marked your deposit as sent. Thank you!";
-    depositStatus.classList.add("success");
-  } catch (err) {
-    console.error(err);
-    depositStatus.textContent = "Error updating deposit status. Please try again.";
-    depositStatus.classList.add("error");
   }
 });
 
@@ -1340,7 +1281,6 @@ db.collection("signups")
       const name = d.name || "";
       const stateDisplay = d.addressStateCode || d.state || "";
       const pm = d.paymentMethod || "";
-      const depositSent = !!d.depositSent;
       const depositApproved = !!d.depositApproved;
       const trackingSubmitted = !!d.trackingSubmitted;
       const trackingNumber = d.trackingNumber || "";
@@ -1354,11 +1294,6 @@ db.collection("signups")
         <td>${name}</td>
         <td>${stateDisplay}</td>
         <td>${pm || "—"}</td>
-        <td>
-          <span class="badge ${depositSent ? "badge-sent" : "badge-not-sent"}">
-            ${depositSent ? "Sent" : "Not Sent"}
-          </span>
-        </td>
         <td>
           <span class="badge ${depositApproved ? "badge-approved" : "badge-not-approved"}">
             ${depositApproved ? "Approved" : "Pending"}
@@ -1377,11 +1312,6 @@ db.collection("signups")
         <td>${stateDisplay}</td>
         <td>${code || "—"}</td>
         <td>${pm || "—"}</td>
-        <td>
-          <span class="badge ${depositSent ? "badge-sent" : "badge-not-sent"}">
-            ${depositSent ? "Sent" : "Not Sent"}
-          </span>
-        </td>
         <td>
           <span class="badge clickable ${depositApproved ? "badge-approved" : "badge-not-approved"}">
             ${depositApproved ? "Approved" : "Click to Approve"}
@@ -1466,7 +1396,7 @@ function attachAdminRowHandlers() {
     if (!docId) return;
 
     // Approve badge
-    const approveBadge = row.querySelector("td:nth-child(8) .badge");
+    const approveBadge = row.querySelector("td:nth-child(7) .badge");
     if (approveBadge) {
       approveBadge.addEventListener("click", async () => {
         const alreadyApproved = approveBadge.classList.contains("badge-approved");
