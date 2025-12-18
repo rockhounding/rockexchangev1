@@ -580,6 +580,24 @@
     #publicTable td { vertical-align: middle; }
     #publicTable td:nth-child(2) { word-break: break-word; }
 
+    /* Let the public table size naturally (prevents strange squeezing) */
+    #publicTable { table-layout: auto; }
+
+    /* Name column: do NOT break words into chunks */
+    #publicTable td:nth-child(2) {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    white-space: nowrap;           /* keep name on one line */
+    }
+
+    /* If screen is too small, allow wrap at spaces (not mid-word) */
+    @media (max-width: 480px) {
+    #publicTable td:nth-child(2) {
+        white-space: normal;         /* can wrap */
+        overflow-wrap: break-word;   /* wraps long names, but not into random chunks */
+    }
+    }
+
   </style>
 </head>
 <body autocomplete="off">
