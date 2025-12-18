@@ -309,7 +309,7 @@
     }
 
     /* 4) Your address grid should collapse to 1 column on phones */
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
     .address-grid {
         grid-template-columns: 1fr;
     }
@@ -362,7 +362,7 @@
     }
 
     /* 6) On small screens, stack fields and force full-width */
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
     .address-grid { grid-template-columns: 1fr; }
 
     input[type="text"],
@@ -371,6 +371,56 @@
     textarea {
         width: 100%;
     }
+    }
+
+    /* ===== Form alignment + no spill (paste at bottom) ===== */
+
+    /* Make the form box always fit inside its parent */
+    #signupForm { width: 100%; }
+
+    /* Treat each field group consistently (label above input) */
+    #signupForm > div {
+    margin-bottom: 12px !important;
+    }
+
+    /* Labels: consistent spacing, no weird gaps */
+    #signupForm label,
+    .address-grid label {
+    display: block;
+    margin: 0 0 6px !important;
+    line-height: 1.2;
+    }
+
+    /* Inputs/selects: full width but never spill */
+    #signupForm input,
+    #signupForm select,
+    #signupForm textarea,
+    .address-grid input,
+    .address-grid select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    }
+
+    /* Remove the effect of <br> making things look separated */
+    #signupForm br,
+    .address-grid br { display: none; }
+
+    /* Address grid: ensure columns don't overflow */
+    .address-grid > div { min-width: 0; }
+
+    /* Fix the special code input width so it doesn't break alignment */
+    #signupCode { width: 160px !important; max-width: 100%; }
+
+    /* Center the code field block cleanly (optional but looks nicer) */
+    #signupCode {
+    text-align: center;
+    }
+
+    /* Mobile: stop iPhone “auto zoom” + keep padding symmetric */
+    @media (max-width: 720px){
+    #signupForm { padding: 0; }
+    input, select, textarea { font-size: 16px; }
     }
 
   </style>
@@ -427,9 +477,7 @@
           <label for="signupName" style="font-size:14px;">Name:</label><br>
           <input id="signupName" type="text" autocomplete="off" style="width:100%;text-align:left;">
         </div>
-
         <div style="margin-bottom:4px;margin-top:8px;font-size:14px;">
-          Mailing address:
         </div>
         <div class="address-grid">
           <div>
