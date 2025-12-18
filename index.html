@@ -619,7 +619,6 @@
           <th>Payment Method</th>
           <th>Deposit (User)</th>
           <th>Deposit (Admin)</th>
-          <th>Tracking</th>
         </tr>
       </thead>
       <tbody id="publicTableBody">
@@ -1214,11 +1213,6 @@ db.collection("signups")
         <td>
           <span class="badge ${depositApproved ? "badge-approved" : "badge-not-approved"}">
             ${depositApproved ? "Approved" : "Pending"}
-          </span>
-        </td>
-        <td>
-          <span class="badge ${trackingSubmitted ? "badge-tracking" : "badge-no-tracking"}">
-            ${trackingSubmitted ? "Submitted" : "Not Submitted"}
           </span>
         </td>
       `;
