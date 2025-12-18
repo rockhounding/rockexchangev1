@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rock hounding for beginners - Rock Exchange</title>
   <style>
     body {
@@ -802,8 +803,16 @@ signupForm.addEventListener("submit", async (e) => {
       assignedAt: null
     });
 
-    signupStatus.textContent =
-      "Thank you for signing up! You can now use your code to mark your deposit as sent.";
+    signupStatus.innerHTML = `
+    🎉 <strong>Signup complete!</strong><br>
+    Please send your deposit using one of the methods below.<br>
+    After sending, use your 4-digit code to mark deposit as sent.
+    <div style="margin-top:10px;">
+        <button class="btn-secondary" onclick="openPayment('PayPal')">Pay with PayPal</button>
+        <button class="btn-secondary" onclick="openPayment('CashApp')">Pay with Cash App</button>
+        <button class="btn-secondary" onclick="openPayment('Venmo')">Pay with Venmo</button>
+    </div>
+    `;
     signupStatus.classList.add("success");
 
     signupForm.reset();
@@ -1642,6 +1651,20 @@ clearAllBtn.addEventListener("click", async () => {
     adminStatus.classList.add("error");
   }
 });
+
+function openPayment(method) {
+    const links = {
+        PayPal: "https://paypal.me/donnapevey1",         // replace w/ real link
+        CashApp: "https://cash.app/$donnapevey",        // replace w/ real cashtag
+        Venmo: "https://venmo.com/u/Donnapevey00"       // replace w/ real link
+    };
+
+    const url = links[method];
+    if (url) {
+        window.open(url, "_blank", "noopener,noreferrer");
+    }
+}
+
 </script>
 </body>
 </html>
