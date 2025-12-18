@@ -571,9 +571,6 @@
 <body autocomplete="off">
 <div class="container">
   <h1>Rockhounding for Beginners - Rock Exchange</h1>
-  <p class="subtitle">
-    Before the deadline: sign up and mark your deposit. After assignments are generated, use your code to reveal who you are sending rocks to and submit your tracking number.
-  </p>
 
   <!-- Card 1: Reveal OR Sign-up (toggled by settings) -->
   <div class="card">
@@ -610,7 +607,7 @@
 
     <!-- Signup + deposit section (shown BEFORE assignments are generated) -->
     <div id="signupSection">
-      <h2 style="margin-top:0;">1. Sign Up</h2>
+      <h2 style="margin-top:0;">Sign Up</h2>
       <div id="signupIntro" style="text-align:center;margin-bottom:10px;">
         <button id="showSignupBtn">📝 Sign Up for This Exchange</button>
       </div>
@@ -724,10 +721,13 @@
           </select>
         </div>
 
-        <div style="text-align:center;">
-          <button type="submit">✅ Submit Sign Up</button>
+        <div class="small-note" style="margin:10px 0 6px 0; text-align:center;">
+            You will be redirected to chosen deposit method on sign up.
         </div>
-      </form>
+
+        <div style="text-align:center;">
+            <button type="submit">✅ Submit Sign Up</button>
+        </div>
 
       <div id="signupStatus" class="status"></div>
     </div>
@@ -736,7 +736,7 @@
 
   <!-- Public list card -->
   <div class="card">
-    <h2 style="margin-top:0;">2. Sign-Up List</h2>
+    <h2 style="margin-top:0;">Sign-Up List</h2>
     <p class="admin-small-note">
     </p>
     <table class="list-table" id="publicTable">
