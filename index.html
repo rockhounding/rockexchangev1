@@ -1197,9 +1197,8 @@ signupForm.addEventListener("submit", async (e) => {
 
      // ✅ SUCCESS MESSAGE (this is the part you were missing)
     signupStatus.innerHTML = `
-      ✅ <strong>Sign-up successful!</strong><br>
-      Opening <strong>${payment}</strong> in a new tab for your deposit now.
-    `;
+      ✅ <strong>Sign-up successful!</strong><br>`
+      ;
     signupStatus.classList.add("success");
 
     // Hide/reset form after message is set
@@ -1486,14 +1485,25 @@ db.collection("signups")
     console.error("Error listening to signups:", err);
   });
 
-// ========== ADMIN PANEL LOCK/UNLOCK ==========
+  // ========== ADMIN PANEL (GOOGLE ADMIN SIGN-IN) ==========
 
-const toggleAdminBtn = document.getElementById("toggleAdminBtn");
-const adminLocked = document.getElementById("adminLocked");
-const adminUnlocked = document.getElementById("adminUnlocked");
-const adminCodeInput = document.getElementById("adminCodeInput");
-const adminUnlockBtn = document.getElementById("adminUnlockBtn");
-const adminLockStatus = document.getElementById("adminLockStatus");
+  // These IDs must exist in your HTML:
+  ///  - adminPanel       (the admin UI container)
+  ///  - adminLoginBtn    (button to sign in)
+  ///  - adminLogoutBtn   (button to sign out)
+
+  const adminPanel = document.getElementById("adminPanel");
+  const adminLoginBtn = document.getElementById("adminLoginBtn");
+  const adminLogoutBtn = document.getElementById("adminLogoutBtn");
+
+  // IMPORTANT: only attach listeners if the buttons exist (prevents null crashes)
+  if (adminLoginBtn) adminLoginBtn.addEventListener("click", adminLogin);
+  if (adminLogoutBtn) adminLogoutBtn.addEventListener("click", adminLogout);
+
+  // Default UI state (signed out)
+  if (adminPanel) adminPanel.style.display = "none";
+  if (adminLoginBtn) adminLoginBtn.style.display = "inline-block";
+  if (adminLogoutBtn) adminLogoutBtn.style.display = "none";
 
 // Show/hide admin card content
 toggleAdminBtn.addEventListener("click", () => {
