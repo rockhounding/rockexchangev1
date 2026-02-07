@@ -988,34 +988,31 @@ auth.onAuthStateChanged(user => {
   const adminPanel = document.getElementById("adminPanel");
   const loginBtn = document.getElementById("adminLoginBtn");
   const logoutBtn = document.getElementById("adminLogoutBtn");
-
+  
+  const toggleAdminBtn = document.getElementById("toggleAdminBtn");
   const adminLocked = document.getElementById("adminLocked");
   const adminUnlocked = document.getElementById("adminUnlocked");
-  const toggleAdminBtn = document.getElementById("toggleAdminBtn");
 
-  if (user) {
-    console.log("Admin signed in:", user.email);
+toggleAdminBtn.addEventListener("click", () => {
+  const anyVisible =
+    (adminLocked && adminLocked.style.display !== "none") ||
+    (adminUnlocked && adminUnlocked.style.display !== "none");
 
-    // Show admin container + swap buttons
-    if (adminPanel) adminPanel.style.display = "block";
-    if (loginBtn) loginBtn.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
-
-    // ✅ AUTO-UNLOCK admin tools when signed in
+  if (anyVisible) {
     if (adminLocked) adminLocked.style.display = "none";
-    if (adminUnlocked) adminUnlocked.style.display = "block";
-    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
-
-  } else {
-    // Signed out
-    if (adminPanel) adminPanel.style.display = "block"; // keep container visible so login button shows
-    if (loginBtn) loginBtn.style.display = "inline-block";
-    if (logoutBtn) logoutBtn.style.display = "none";
-
-    // ✅ Lock admin tools when signed out
-    if (adminLocked) adminLocked.style.display = "block";
     if (adminUnlocked) adminUnlocked.style.display = "none";
-    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
+    toggleAdminBtn.textContent = "Show Admin Panel";
+  } else {
+    // If signed in, show unlocked; else show locked
+    const isSignedIn = !!auth.currentUser;
+    if (isSignedIn) {
+      if (adminLocked) adminLocked.style.display = "none";
+      if (adminUnlocked) adminUnlocked.style.display = "block";
+    } else {
+      if (adminLocked) adminLocked.style.display = "block";
+      if (adminUnlocked) adminUnlocked.style.display = "none";
+    }
+    toggleAdminBtn.textContent = "Hide Admin Panel";
   }
 });
 // =======================================
