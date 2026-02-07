@@ -841,7 +841,6 @@
   </div>
 
   <!-- Admin section -->
-  <!-- Admin section -->
 <div id="adminPanel">
   <div class="card">
     <div class="admin-header">
@@ -990,18 +989,33 @@ auth.onAuthStateChanged(user => {
   const loginBtn = document.getElementById("adminLoginBtn");
   const logoutBtn = document.getElementById("adminLogoutBtn");
 
+  const adminLocked = document.getElementById("adminLocked");
+  const adminUnlocked = document.getElementById("adminUnlocked");
+  const toggleAdminBtn = document.getElementById("toggleAdminBtn");
+
   if (user) {
     console.log("Admin signed in:", user.email);
 
-    // Show admin UI (container is always present now)
+    // Show admin container + swap buttons
     if (adminPanel) adminPanel.style.display = "block";
     if (loginBtn) loginBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+    // ✅ AUTO-UNLOCK admin tools when signed in
+    if (adminLocked) adminLocked.style.display = "none";
+    if (adminUnlocked) adminUnlocked.style.display = "block";
+    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
+
   } else {
-    // Hide admin UI
-    if (adminPanel) adminPanel.style.display = "none";
+    // Signed out
+    if (adminPanel) adminPanel.style.display = "block"; // keep container visible so login button shows
     if (loginBtn) loginBtn.style.display = "inline-block";
     if (logoutBtn) logoutBtn.style.display = "none";
+
+    // ✅ Lock admin tools when signed out
+    if (adminLocked) adminLocked.style.display = "block";
+    if (adminUnlocked) adminUnlocked.style.display = "none";
+    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
   }
 });
 // =======================================
