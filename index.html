@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rockhounding For Beginners - The Original - Rock Exchange</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -117,13 +118,8 @@
       transform: none;
     }
 
-    .btn-secondary {
-      background: #3f51b5;
-    }
-
-    .btn-danger {
-      background: #c62828;
-    }
+    .btn-secondary { background: #3f51b5; }
+    .btn-danger { background: #c62828; }
 
     .btn-small {
       padding: 4px 10px;
@@ -139,13 +135,8 @@
       text-align: center;
     }
 
-    .status.error {
-      color: #ff8a80;
-    }
-
-    .status.success {
-      color: #9cff9c;
-    }
+    .status.error { color: #ff8a80; }
+    .status.success { color: #9cff9c; }
 
     .result-card {
       margin-top: 14px;
@@ -157,9 +148,7 @@
       line-height: 1.4;
     }
 
-    .result-card strong {
-      color: #ffd54f;
-    }
+    .result-card strong { color: #ffd54f; }
 
     .small-note {
       font-size: 11px;
@@ -168,9 +157,7 @@
       text-align: center;
     }
 
-    .fade-in {
-      animation: fadeIn 0.4s ease forwards;
-    }
+    .fade-in { animation: fadeIn 0.4s ease forwards; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
@@ -225,39 +212,9 @@
       font-size: 11px;
     }
 
-    .badge-sent {
-      background: #ffca28;
-      color: #000;
-    }
-
-    .badge-not-sent {
-      background: #555;
-      color: #eee;
-    }
-
-    .badge-approved {
-      background: #66bb6a;
-      color: #000;
-    }
-
-    .badge-not-approved {
-      background: #b0bec5;
-      color: #000;
-    }
-
-    .badge-tracking {
-      background: #26c6da;
-      color: #000;
-    }
-
-    .badge-no-tracking {
-      background: #616161;
-      color: #eee;
-    }
-
-    .clickable {
-      cursor: pointer;
-    }
+    .badge-approved { background: #66bb6a; color: #000; }
+    .badge-not-approved { background: #b0bec5; color: #000; }
+    .clickable { cursor: pointer; }
 
     .address-grid {
       display: grid;
@@ -266,9 +223,7 @@
       margin-top: 8px;
     }
 
-    .address-grid label {
-      font-size: 13px;
-    }
+    .address-grid label { font-size: 13px; }
 
     .address-grid input, .address-grid select {
       width: 100%;
@@ -276,390 +231,134 @@
       letter-spacing: 0;
     }
 
-    .preview-row-selected {
-      background: #334155 !important;
-    }
+    .preview-row-selected { background: #334155 !important; }
 
-    /* ===== Mobile + Modern Patch (add at VERY bottom) ===== */
+    /* ===== Mobile + Modern Patch ===== */
+    input[type="text"], input[type="password"], select, textarea, button { font-size: 16px; }
+    button { min-height: 44px; }
+    body { display: block; align-items: initial; }
+    .container { margin: 0 auto; padding: 16px; }
+    .card { margin-bottom: 14px; padding: 16px; }
 
-    /* 1) Make inputs/buttons consistent + mobile friendly */
-    input[type="text"], input[type="password"], select, textarea, button {
-    font-size: 16px; /* prevents iPhone zoom on focus */
-    }
-
-    button {
-    min-height: 44px; /* better tap target */
-    }
-
-    /* 2) Stop the "centered like a terminal window" look on phones */
-    body {
-    display: block;            /* removes the flex centering */
-    align-items: initial;
-    }
-
-    .container {
-    margin: 0 auto;
-    padding: 16px;
-    }
-
-    /* 3) Make cards breathe more on mobile */
-    .card {
-    margin-bottom: 14px;
-    padding: 16px;
-    }
-
-    /* 4) Your address grid should collapse to 1 column on phones */
     @media (max-width: 720px) {
-    .address-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .code-row {
-        justify-content: stretch;
-    }
-
-    .code-row input,
-    .code-row select,
-    .code-row button {
-        width: 100%;
-    }
-
-    .list-table {
+      .address-grid { grid-template-columns: 1fr; }
+      .code-row { justify-content: stretch; }
+      .code-row input, .code-row select, .code-row button { width: 100%; }
+      .list-table {
         display: block;
-        overflow-x: auto;  /* tables scroll horizontally on small screens */
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+      }
     }
-    }
-    /* ===== FIX: overlap + off-screen inputs (paste at very bottom) ===== */
 
-    /* 1) Prevent “wide” inputs from overflowing their container */
     * { box-sizing: border-box; }
     input, select, textarea, button { max-width: 100%; }
 
-    /* 2) Give every input row consistent spacing */
-    .address-grid {
-    gap: 12px 14px;   /* more breathing room so fields don't "touch" */
-    }
+    .address-grid { gap: 12px 14px; }
+    .address-grid > div, .address-grid label, .address-grid input, .address-grid select { min-width: 0; }
+    .address-grid label { display: block; margin-bottom: 6px; }
 
-    /* 3) Ensure grid items can shrink properly (common overlap fix) */
-    .address-grid > div,
-    .address-grid label,
-    .address-grid input,
-    .address-grid select {
-    min-width: 0;
-    }
-
-    /* 4) Make labels not crowd inputs */
-    .address-grid label {
-    display: block;
-    margin-bottom: 6px;
-    }
-
-    /* 5) Symmetric padding on phone + stop “right edge hugs” */
-    .container {
-    padding-left: 16px;
-    padding-right: 16px;
-    }
-
-    /* 6) On small screens, stack fields and force full-width */
-    @media (max-width: 720px) {
-    .address-grid { grid-template-columns: 1fr; }
-
-    input[type="text"],
-    input[type="password"],
-    select,
-    textarea {
-        width: 100%;
-    }
-    }
-
-    /* ===== Form alignment + no spill (paste at bottom) ===== */
-
-    /* Make the form box always fit inside its parent */
     #signupForm { width: 100%; }
+    #signupForm > div { margin-bottom: 12px !important; }
 
-    /* Treat each field group consistently (label above input) */
-    #signupForm > div {
-    margin-bottom: 12px !important;
+    #signupForm label, .address-grid label {
+      display: block;
+      margin: 0 0 6px !important;
+      line-height: 1.2;
     }
 
-    /* Labels: consistent spacing, no weird gaps */
-    #signupForm label,
-    .address-grid label {
-    display: block;
-    margin: 0 0 6px !important;
-    line-height: 1.2;
+    #signupForm input, #signupForm select, #signupForm textarea,
+    .address-grid input, .address-grid select {
+      display: block;
+      width: 100%;
+      max-width: 100%;
     }
 
-    /* Inputs/selects: full width but never spill */
-    #signupForm input,
-    #signupForm select,
-    #signupForm textarea,
-    .address-grid input,
-    .address-grid select {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    }
-
-    /* Remove the effect of <br> making things look separated */
-    #signupForm br,
-    .address-grid br { display: none; }
-
-    /* Address grid: ensure columns don't overflow */
+    #signupForm br, .address-grid br { display: none; }
     .address-grid > div { min-width: 0; }
+    #signupCode { width: 160px !important; max-width: 100%; text-align: center; }
 
-    /* Fix the special code input width so it doesn't break alignment */
-    #signupCode { width: 160px !important; max-width: 100%; }
-
-    /* Center the code field block cleanly (optional but looks nicer) */
-    #signupCode {
-    text-align: center;
-    }
-
-    /* Mobile: stop iPhone “auto zoom” + keep padding symmetric */
-    @media (max-width: 720px){
-    #signupForm { padding: 0; }
-    input, select, textarea { font-size: 16px; }
-    }
-
-    /* ===== LIGHT THEME OVERRIDE (paste at very bottom) ===== */
-
-    body{
-    background:#f3f6fb;
-    color:#1f2937;
-    }
-
-    h1{ color:#0f172a; }
+    /* ===== LIGHT THEME OVERRIDE ===== */
+    body{ background:#f7f8fb; color:#1f2937; }
+    h1{ color:#0f172a; font-weight:700; }
     p.subtitle{ color:#475569; }
 
     .card{
-    background:#ffffff;
-    border: 1px solid #dbe3ef;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      background:#ffffff;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 30px rgba(30, 41, 59, 0.12);
     }
 
-    .small-note{ color:#475569; }
-    .admin-small-note{ color:#475569; }
+    .small-note, .admin-small-note{ color:#475569; }
 
-    input[type="text"], input[type="password"], select{
-    background:#ffffff;
-    color:#111827;
-    box-shadow: inset 0 0 0 1px #cbd5e1;
+    input[type="text"], input[type="password"], select, textarea{
+      background:#f9fafb;
+      color:#111827;
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px #cbd5e1;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     textarea{
-    background:#ffffff;
-    color:#111827;
-    box-shadow: inset 0 0 0 1px #cbd5e1;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
 
     input:focus, select:focus, textarea:focus{
-    outline:none;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), inset 0 0 0 1px #2563eb;
-    }
-
-    /* Buttons: calmer, modern */
-    button{
-    background:#2563eb;
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
-    }
-
-    button:hover{ background:#1d4ed8; }
-    .btn-secondary{ background:#0f766e; }
-    .btn-secondary:hover{ background:#115e59; }
-
-    .btn-danger{ background:#dc2626; }
-    .btn-danger:hover{ background:#b91c1c; }
-
-    /* Status colors for light bg */
-    .status.error{ color:#b91c1c; }
-    .status.success{ color:#166534; }
-
-    /* Result card on light bg */
-    .result-card{
-    background:#f8fafc;
-    box-shadow: inset 0 0 0 1px #dbe3ef;
-    }
-
-    .result-card strong{ color:#b45309; }
-
-    /* Table on light bg */
-    .list-table th, .list-table td{
-    border-bottom: 1px solid #e5e7eb;
-    }
-
-    .list-table th{
-    background:#f1f5f9;
-    }
-
-    /* Badges tuned for light bg */
-    .badge-not-sent{ background:#e5e7eb; color:#111827; }
-    .badge-not-approved{ background:#e2e8f0; color:#111827; }
-    .badge-no-tracking{ background:#e5e7eb; color:#111827; }
-
-    /* Your selected preview row */
-    .preview-row-selected{
-    background:#dbeafe !important;
-    }
-
-    /* ===== Warm Light Refinement (paste last) ===== */
-
-    body{
-    background:#f7f8fb;
-    }
-
-    .card{
-    background:#ffffff;
-    border-radius: 14px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 12px 30px rgba(30, 41, 59, 0.12);
-    }
-
-    h1{
-    font-weight: 700;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select,
-    textarea{
-    background:#f9fafb;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 1px #cbd5e1;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus{
-    box-shadow:
+      outline:none;
+      box-shadow:
         0 0 0 4px rgba(59,130,246,.15),
         inset 0 0 0 1px #3b82f6;
     }
 
     button{
-    background:#2563eb;
-    border-radius: 12px;
-    font-weight: 600;
+      background:#2563eb;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
     }
 
-    .small-note{
-    font-size: 12px;
+    button:hover{ background:#1d4ed8; }
+    .btn-secondary{ background:#0f766e; }
+    .btn-secondary:hover{ background:#115e59; }
+    .btn-danger{ background:#dc2626; }
+    .btn-danger:hover{ background:#b91c1c; }
+
+    .status.error{ color:#b91c1c; }
+    .status.success{ color:#166534; }
+
+    .result-card{
+      background:#f8fafc;
+      box-shadow: inset 0 0 0 1px #dbe3ef;
     }
 
-    /* Make cards visually separated without dark colors */
-    .card + .card{
-    margin-top: 16px;
-    }
+    .result-card strong{ color:#b45309; }
 
-    /* ===== Softer payment selector ===== */
-    #signupPay{
-    background:#f9fafb;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 1px #cbd5e1;
-    }
+    .list-table th, .list-table td{ border-bottom: 1px solid #e5e7eb; }
+    .list-table th{ background:#f1f5f9; }
 
-    #signupPay:focus{
-    box-shadow:
-        0 0 0 4px rgba(37,99,235,.15),
-        inset 0 0 0 1px #2563eb;
-    }
-
-    /* ===== Public table alignment polish ===== */
-    #publicTable { table-layout: fixed; }
-    #publicTable th:nth-child(1),
-    #publicTable td:nth-child(1) { width: 44px; text-align: center; }
-
-    #publicTable th:nth-child(3),
-    #publicTable td:nth-child(3) { width: 180px; }
-
-    #publicTable th:nth-child(4),
-    #publicTable td:nth-child(4) { width: 160px; }
-
-    #publicTable td { vertical-align: middle; }
-
-    /* Let the public table size naturally (prevents strange squeezing) */
-    #publicTable { table-layout: auto; }
-
-    /* Name column: do NOT break words into chunks */
     #publicTable td:nth-child(2) {
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-    white-space: nowrap;           /* keep name on one line */
+      word-break: normal !important;
+      overflow-wrap: normal !important;
+      white-space: nowrap;
     }
 
-    /* If screen is too small, allow wrap at spaces (not mid-word) */
     @media (max-width: 480px) {
-    #publicTable td:nth-child(2) {
-        white-space: normal;         /* can wrap */
-        overflow-wrap: break-word;   /* wraps long names, but not into random chunks */
+      #publicTable td:nth-child(2) {
+        white-space: normal;
+        overflow-wrap: break-word;
+      }
     }
-    }
-
-    /* ===== Public table mobile spacing + alignment fix ===== */
-
-    /* Make tables calculate column widths more evenly */
-    .list-table {
-    table-layout: fixed;
-    width: 100%;
-    }
-
-    /* Public table specific tweaks */
-    #publicTable th,
-    #publicTable td {
-    padding: 8px 10px;
-    vertical-align: middle;
-    }
-
-    /* Name column: keep on one line if possible */
-    #publicTable td:nth-child(2) {
-    white-space: nowrap;
-    }
-
-    /* State column: give it breathing room */
-    #publicTable th:nth-child(3),
-    #publicTable td:nth-child(3) {
-    min-width: 90px;
-    text-align: center;
-    }
-
-    /* Deposit column: push badge inward & center it */
-    #publicTable th:nth-child(4),
-    #publicTable td:nth-child(4) {
-    min-width: 120px;
-    text-align: center;
-    }
-
-    /* Prevent ugly letter-by-letter wrapping on mobile */
-    #publicTable td {
-    word-break: normal;
-    overflow-wrap: normal;
-    }
-
-    /* Mobile-only refinement */
-    @media (max-width: 720px) {
-    #publicTable th,
-    #publicTable td {
-        font-size: 13px;
-    }
-    }
-
-    #publicTable th:first-child,
-    #publicTable td:first-child {
-        width: 36px;
-        text-align: center;
-    }
-
   </style>
 </head>
+
 <body autocomplete="off">
 <div class="container">
   <h1>Rockhounding For Beginners - The Original - Rock Exchange</h1>
 
   <!-- Card 1: Reveal OR Sign-up (toggled by settings) -->
   <div class="card">
-    <!-- Reveal section (shown AFTER assignments are generated) -->
+    <!-- Reveal section -->
     <div id="revealSection" style="display:none;">
       <h2 style="margin-top:0;">1. Reveal Your Match</h2>
       <p class="small-note" style="margin-top:2px;">
@@ -669,12 +368,12 @@
         <label for="revealCodeInput">Your code:</label>
         <input id="revealCodeInput" type="text" maxlength="8" autocomplete="off" inputmode="numeric"
                placeholder="1234" style="width:160px;">
-        <button id="revealBtn">✨ Reveal My Match</button>
+        <button id="revealBtn" type="button">✨ Reveal My Match</button>
       </div>
       <div id="revealStatus" class="status"></div>
       <div id="revealResultCard" class="result-card" style="display:none;"></div>
 
-      <!-- Tracking section (visible after a successful reveal) -->
+      <!-- Tracking section -->
       <div id="trackingSection" style="display:none; margin-top:10px;">
         <p class="small-note">
           After you have mailed your box, enter your tracking number below so the organizer can confirm and refund your deposit.
@@ -683,18 +382,18 @@
           <label for="trackingInput">Tracking #:</label>
           <input id="trackingInput" type="text" autocomplete="off"
                  placeholder="e.g. 9400 1234 5678 9000 0000 00" style="min-width:260px;">
-          <button id="submitTrackingBtn" class="btn-secondary">📦 Submit Tracking</button>
+          <button id="submitTrackingBtn" type="button" class="btn-secondary">📦 Submit Tracking</button>
         </div>
         <div id="trackingStatus" class="status"></div>
         <div id="incomingTrackingDisplay" class="small-note" style="margin-top:4px;"></div>
       </div>
     </div>
 
-    <!-- Signup + deposit section (shown BEFORE assignments are generated) -->
+    <!-- Signup section -->
     <div id="signupSection">
       <h2 style="margin-top:0;">Sign Up</h2>
       <div id="signupIntro" style="text-align:center;margin-bottom:10px;">
-        <button id="showSignupBtn">📝 Sign Up for This Exchange</button>
+        <button id="showSignupBtn" type="button">📝 Sign Up for This Exchange</button>
       </div>
 
       <form id="signupForm" style="display:none;max-width:700px;margin:0 auto;">
@@ -702,8 +401,7 @@
           <label for="signupName" style="font-size:14px;">Name:</label><br>
           <input id="signupName" type="text" autocomplete="off" style="width:100%;text-align:left;">
         </div>
-        <div style="margin-bottom:4px;margin-top:8px;font-size:14px;">
-        </div>
+
         <div class="address-grid">
           <div>
             <label for="signupStreet">Street</label><br>
@@ -718,69 +416,28 @@
             <select id="signupState">
               <option value="">-- Select --</option>
               <!-- US states -->
-              <option value="AL">Alabama (AL)</option>
-              <option value="AK">Alaska (AK)</option>
-              <option value="AZ">Arizona (AZ)</option>
-              <option value="AR">Arkansas (AR)</option>
-              <option value="CA">California (CA)</option>
-              <option value="CO">Colorado (CO)</option>
-              <option value="CT">Connecticut (CT)</option>
-              <option value="DE">Delaware (DE)</option>
-              <option value="FL">Florida (FL)</option>
-              <option value="GA">Georgia (GA)</option>
-              <option value="HI">Hawaii (HI)</option>
-              <option value="ID">Idaho (ID)</option>
-              <option value="IL">Illinois (IL)</option>
-              <option value="IN">Indiana (IN)</option>
-              <option value="IA">Iowa (IA)</option>
-              <option value="KS">Kansas (KS)</option>
-              <option value="KY">Kentucky (KY)</option>
-              <option value="LA">Louisiana (LA)</option>
-              <option value="ME">Maine (ME)</option>
-              <option value="MD">Maryland (MD)</option>
-              <option value="MA">Massachusetts (MA)</option>
-              <option value="MI">Michigan (MI)</option>
-              <option value="MN">Minnesota (MN)</option>
-              <option value="MS">Mississippi (MS)</option>
-              <option value="MO">Missouri (MO)</option>
-              <option value="MT">Montana (MT)</option>
-              <option value="NE">Nebraska (NE)</option>
-              <option value="NV">Nevada (NV)</option>
-              <option value="NH">New Hampshire (NH)</option>
-              <option value="NJ">New Jersey (NJ)</option>
-              <option value="NM">New Mexico (NM)</option>
-              <option value="NY">New York (NY)</option>
-              <option value="NC">North Carolina (NC)</option>
-              <option value="ND">North Dakota (ND)</option>
-              <option value="OH">Ohio (OH)</option>
-              <option value="OK">Oklahoma (OK)</option>
-              <option value="OR">Oregon (OR)</option>
-              <option value="PA">Pennsylvania (PA)</option>
-              <option value="RI">Rhode Island (RI)</option>
-              <option value="SC">South Carolina (SC)</option>
-              <option value="SD">South Dakota (SD)</option>
-              <option value="TN">Tennessee (TN)</option>
-              <option value="TX">Texas (TX)</option>
-              <option value="UT">Utah (UT)</option>
-              <option value="VT">Vermont (VT)</option>
-              <option value="VA">Virginia (VA)</option>
-              <option value="WA">Washington (WA)</option>
-              <option value="WV">West Virginia (WV)</option>
-              <option value="WI">Wisconsin (WI)</option>
-              <option value="WY">Wyoming (WY)</option>
+              <option value="AL">Alabama (AL)</option><option value="AK">Alaska (AK)</option><option value="AZ">Arizona (AZ)</option>
+              <option value="AR">Arkansas (AR)</option><option value="CA">California (CA)</option><option value="CO">Colorado (CO)</option>
+              <option value="CT">Connecticut (CT)</option><option value="DE">Delaware (DE)</option><option value="FL">Florida (FL)</option>
+              <option value="GA">Georgia (GA)</option><option value="HI">Hawaii (HI)</option><option value="ID">Idaho (ID)</option>
+              <option value="IL">Illinois (IL)</option><option value="IN">Indiana (IN)</option><option value="IA">Iowa (IA)</option>
+              <option value="KS">Kansas (KS)</option><option value="KY">Kentucky (KY)</option><option value="LA">Louisiana (LA)</option>
+              <option value="ME">Maine (ME)</option><option value="MD">Maryland (MD)</option><option value="MA">Massachusetts (MA)</option>
+              <option value="MI">Michigan (MI)</option><option value="MN">Minnesota (MN)</option><option value="MS">Mississippi (MS)</option>
+              <option value="MO">Missouri (MO)</option><option value="MT">Montana (MT)</option><option value="NE">Nebraska (NE)</option>
+              <option value="NV">Nevada (NV)</option><option value="NH">New Hampshire (NH)</option><option value="NJ">New Jersey (NJ)</option>
+              <option value="NM">New Mexico (NM)</option><option value="NY">New York (NY)</option><option value="NC">North Carolina (NC)</option>
+              <option value="ND">North Dakota (ND)</option><option value="OH">Ohio (OH)</option><option value="OK">Oklahoma (OK)</option>
+              <option value="OR">Oregon (OR)</option><option value="PA">Pennsylvania (PA)</option><option value="RI">Rhode Island (RI)</option>
+              <option value="SC">South Carolina (SC)</option><option value="SD">South Dakota (SD)</option><option value="TN">Tennessee (TN)</option>
+              <option value="TX">Texas (TX)</option><option value="UT">Utah (UT)</option><option value="VT">Vermont (VT)</option>
+              <option value="VA">Virginia (VA)</option><option value="WA">Washington (WA)</option><option value="WV">West Virginia (WV)</option>
+              <option value="WI">Wisconsin (WI)</option><option value="WY">Wyoming (WY)</option><option value="DC">District of Columbia (DC)</option>
               <!-- Canada -->
-              <option value="AB">Alberta (AB)</option>
-              <option value="BC">British Columbia (BC)</option>
-              <option value="MB">Manitoba (MB)</option>
-              <option value="NB">New Brunswick (NB)</option>
-              <option value="NL">Newfoundland and Labrador (NL)</option>
-              <option value="NS">Nova Scotia (NS)</option>
-              <option value="NT">Northwest Territories (NT)</option>
-              <option value="NU">Nunavut (NU)</option>
-              <option value="ON">Ontario (ON)</option>
-              <option value="PE">Prince Edward Island (PE)</option>
-              <option value="QC">Quebec (QC)</option>
-              <option value="SK">Saskatchewan (SK)</option>
+              <option value="AB">Alberta (AB)</option><option value="BC">British Columbia (BC)</option><option value="MB">Manitoba (MB)</option>
+              <option value="NB">New Brunswick (NB)</option><option value="NL">Newfoundland and Labrador (NL)</option><option value="NS">Nova Scotia (NS)</option>
+              <option value="NT">Northwest Territories (NT)</option><option value="NU">Nunavut (NU)</option><option value="ON">Ontario (ON)</option>
+              <option value="PE">Prince Edward Island (PE)</option><option value="QC">Quebec (QC)</option><option value="SK">Saskatchewan (SK)</option>
               <option value="YT">Yukon (YT)</option>
             </select>
           </div>
@@ -807,25 +464,21 @@
         </div>
 
         <div class="small-note" style="margin:10px 0 6px 0; text-align:center;">
-            You will be redirected to chosen deposit method on sign up.
+          You will be redirected to chosen deposit method on sign up.
         </div>
 
         <div style="text-align:center;">
-            <button type="submit">✅ Submit Sign Up</button>
+          <button type="submit">✅ Submit Sign Up</button>
         </div>
-        </form>
+      </form>
 
-        <div id="signupStatus" class="status"></div>
-
+      <div id="signupStatus" class="status"></div>
     </div>
   </div>
-  
 
   <!-- Public list card -->
   <div class="card">
     <h2 style="margin-top:0;">Sign-Up List</h2>
-    <p class="admin-small-note">
-    </p>
     <table class="list-table" id="publicTable">
       <thead>
         <tr>
@@ -835,41 +488,24 @@
           <th>Deposit</th>
         </tr>
       </thead>
-      <tbody id="publicTableBody">
-      </tbody>
+      <tbody id="publicTableBody"></tbody>
     </table>
   </div>
 
-  <!-- Admin section -->
-<div id="adminPanel">
-  <div class="card">
+  <!-- Admin section (GOOGLE LOGIN ONLY — NO CODE UNLOCK) -->
+  <div id="adminPanel" class="card">
     <div class="admin-header">
-      <h2>Organizer(Admin)</h2>
+      <h2>Organizer (Admin)</h2>
       <button id="toggleAdminBtn" class="btn-secondary" type="button" style="margin-top:0;">Hide Admin Panel</button>
     </div>
 
     <button id="adminLoginBtn" type="button" onclick="adminLogin()">Admin Sign In</button>
     <button id="adminLogoutBtn" type="button" onclick="adminLogout()" style="display:none;">Sign Out</button>
 
-    <!-- Locked view -->
-    <div id="adminLocked" style="margin-top:12px; display:block;">
-      <div class="code-row" style="justify-content:flex-start;">
-        <label for="adminCodeInput" style="font-size:13px;">Admin code:</label>
-        <input id="adminCodeInput" type="password" maxlength="16" placeholder="••••" autocomplete="new-password">
-        <button id="adminUnlockBtn" type="button">Unlock</button>
-      </div>
-      <div id="adminLockStatus" class="status" style="text-align:left;"></div>
-      <div class="admin-small-note">
-        This area is for the organizer only.
-      </div>
-    </div>
-
-    <!-- Unlocked admin tools -->
-    <div id="adminUnlocked" style="display:none;margin-top:14px;">
+    <!-- Admin tools (only visible when signed in) -->
+    <div id="adminTools" style="display:none;margin-top:14px;">
       <h3 style="margin:0 0 6px 0;font-size:15px;">Sign-Ups (Admin View)</h3>
-      <p class="admin-small-note">
-        Click “Approved” to mark deposits as verified.<br>
-      </p>
+      <p class="admin-small-note">Click “Approved” to mark deposits as verified.</p>
 
       <table class="list-table" id="adminTable">
         <thead>
@@ -888,18 +524,15 @@
         <tbody id="adminTableBody"></tbody>
       </table>
 
-      <!-- Assignments preview -->
       <h3 style="margin:16px 0 6px 0;font-size:15px;">Assignments Preview (Approved Only)</h3>
       <p class="admin-small-note">
-        Preview Assignments: to generate assignments click matches you don't like and re generate until your satisfied
-        <strong>approved</strong>
-        <br>
-        Commit Assignments: sends the assignments to the reveal portion and starts the exchange
+        Click rows you don’t like and re-generate until you’re satisfied.
+        Commit Assignments: saves the assignments and starts the exchange.
       </p>
 
       <div style="margin-bottom:8px;">
         <button id="generatePreviewBtn" class="btn-secondary" type="button">🎲 Preview Assignments</button>
-        <button id="commitAssignmentsBtn" class="btn-secondary" type="button">✅ Commit Assigments</button>
+        <button id="commitAssignmentsBtn" class="btn-secondary" type="button">✅ Commit Assignments</button>
       </div>
 
       <table class="list-table" id="previewTable">
@@ -929,7 +562,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 
 <script>
-// ===== 1. Firebase config – your project =====
+// ===== Firebase config – your project =====
 const firebaseConfig = {
   apiKey: "AIzaSyDVlyLssFBefRTRWMNFtNJG7uKNKsWEqDA",
   authDomain: "rock-exchange.firebaseapp.com",
@@ -939,7 +572,6 @@ const firebaseConfig = {
   appId: "1:916313020352:web:48c363939a1b923a751a25",
   measurementId: "G-LS6C7PX4G4"
 };
-// =================================================================
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -948,11 +580,10 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
-// This prevents the "conflicting popup" + "pending promise" errors
 let adminLoginInProgress = false;
 
 function adminLogin() {
-  if (adminLoginInProgress) return; // prevent double popup
+  if (adminLoginInProgress) return;
   adminLoginInProgress = true;
 
   const btn = document.getElementById("adminLoginBtn");
@@ -961,17 +592,11 @@ function adminLogin() {
   auth.signInWithPopup(provider)
     .catch(err => {
       console.error("Admin login failed:", err);
-
       if (err && err.code === "auth/popup-blocked") {
         alert("Popup was blocked. Allow popups for this site, then try again.");
         return;
       }
-      if (err && err.code === "auth/cancelled-popup-request") {
-        // Happens if another sign-in was triggered while one was in progress.
-        // Safe to ignore.
-        return;
-      }
-
+      if (err && err.code === "auth/cancelled-popup-request") return;
       alert("Admin sign-in failed.");
     })
     .finally(() => {
@@ -984,39 +609,42 @@ function adminLogout() {
   auth.signOut();
 }
 
-auth.onAuthStateChanged(user => {
-  const adminPanel = document.getElementById("adminPanel");
-  const loginBtn = document.getElementById("adminLoginBtn");
-  const logoutBtn = document.getElementById("adminLogoutBtn");
-  
-  const toggleAdminBtn = document.getElementById("toggleAdminBtn");
-  const adminLocked = document.getElementById("adminLocked");
-  const adminUnlocked = document.getElementById("adminUnlocked");
+// ===== Admin UI wiring (GOOGLE LOGIN ONLY) =====
+const adminLoginBtn = document.getElementById("adminLoginBtn");
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
+const adminTools = document.getElementById("adminTools");
+const toggleAdminBtn = document.getElementById("toggleAdminBtn");
 
-toggleAdminBtn.addEventListener("click", () => {
-  const anyVisible =
-    (adminLocked && adminLocked.style.display !== "none") ||
-    (adminUnlocked && adminUnlocked.style.display !== "none");
-
-  if (anyVisible) {
-    if (adminLocked) adminLocked.style.display = "none";
-    if (adminUnlocked) adminUnlocked.style.display = "none";
-    toggleAdminBtn.textContent = "Show Admin Panel";
-  } else {
-    // If signed in, show unlocked; else show locked
-    const isSignedIn = !!auth.currentUser;
-    if (isSignedIn) {
-      if (adminLocked) adminLocked.style.display = "none";
-      if (adminUnlocked) adminUnlocked.style.display = "block";
+// Toggle hides/shows tools (only if signed in)
+if (toggleAdminBtn) {
+  toggleAdminBtn.addEventListener("click", () => {
+    if (!auth.currentUser) return; // not signed in -> nothing to show
+    const isVisible = adminTools.style.display !== "none";
+    if (isVisible) {
+      adminTools.style.display = "none";
+      toggleAdminBtn.textContent = "Show Admin Panel";
     } else {
-      if (adminLocked) adminLocked.style.display = "block";
-      if (adminUnlocked) adminUnlocked.style.display = "none";
+      adminTools.style.display = "block";
+      toggleAdminBtn.textContent = "Hide Admin Panel";
     }
-    toggleAdminBtn.textContent = "Hide Admin Panel";
+  });
+}
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    if (adminLoginBtn) adminLoginBtn.style.display = "none";
+    if (adminLogoutBtn) adminLogoutBtn.style.display = "inline-block";
+    if (adminTools) adminTools.style.display = "block";
+    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
+  } else {
+    if (adminLoginBtn) adminLoginBtn.style.display = "inline-block";
+    if (adminLogoutBtn) adminLogoutBtn.style.display = "none";
+    if (adminTools) adminTools.style.display = "none";
+    if (toggleAdminBtn) toggleAdminBtn.textContent = "Hide Admin Panel";
   }
 });
-// =======================================
 
+// ===== Payment Links =====
 const PAYMENT_LINKS = {
   "PayPal": "PASTE_PAYPAL_LINK_HERE",
   "Cash App": "PASTE_CASHAPP_LINK_HERE",
@@ -1049,7 +677,6 @@ function regionForState(st) {
   return stateToRegion[up] || "Unknown";
 }
 
-// ===== Name + Address formatting helpers =====
 function titleCaseWord(word) {
   if (!word) return "";
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
@@ -1057,24 +684,12 @@ function titleCaseWord(word) {
 
 function formatName(name) {
   if (!name) return "";
-  return name
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim()
-    .split(" ")
-    .map(w => titleCaseWord(w))
-    .join(" ");
+  return name.toLowerCase().replace(/\s+/g, " ").trim().split(" ").map(titleCaseWord).join(" ");
 }
 
 function formatCity(city) {
   if (!city) return "";
-  return city
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim()
-    .split(" ")
-    .map(w => titleCaseWord(w))
-    .join(" ");
+  return city.toLowerCase().replace(/\s+/g, " ").trim().split(" ").map(titleCaseWord).join(" ");
 }
 
 function formatStreet(street) {
@@ -1083,81 +698,43 @@ function formatStreet(street) {
   if (!cleaned) return "";
 
   const suffixMap = {
-    "st": "St.",
-    "street": "St.",
-    "rd": "Rd.",
-    "road": "Rd.",
-    "ave": "Ave.",
-    "avenue": "Ave.",
-    "blvd": "Blvd.",
-    "boulevard": "Blvd.",
-    "ln": "Ln.",
-    "lane": "Ln.",
-    "dr": "Dr.",
-    "drive": "Dr.",
-    "ct": "Ct.",
-    "court": "Ct.",
-    "pkwy": "Pkwy.",
-    "parkway": "Pkwy.",
-    "pl": "Pl.",
-    "place": "Pl."
+    "st": "St.", "street": "St.",
+    "rd": "Rd.", "road": "Rd.",
+    "ave": "Ave.", "avenue": "Ave.",
+    "blvd": "Blvd.", "boulevard": "Blvd.",
+    "ln": "Ln.", "lane": "Ln.",
+    "dr": "Dr.", "drive": "Dr.",
+    "ct": "Ct.", "court": "Ct.",
+    "pkwy": "Pkwy.", "parkway": "Pkwy.",
+    "pl": "Pl.", "place": "Pl."
   };
 
-  const dirMap = {
-    "n": "N",
-    "s": "S",
-    "e": "E",
-    "w": "W",
-    "ne": "NE",
-    "nw": "NW",
-    "se": "SE",
-    "sw": "SW"
-  };
+  const dirMap = { "n":"N","s":"S","e":"E","w":"W","ne":"NE","nw":"NW","se":"SE","sw":"SW" };
 
   const parts = cleaned.split(" ");
   const out = parts.map(part => {
     let raw = part;
     let trailing = "";
-
-    // handle trailing punctuation like "," or "."
-    if (/[.,]$/.test(raw)) {
-      trailing = raw.slice(-1);
-      raw = raw.slice(0, -1);
-    }
+    if (/[.,]$/.test(raw)) { trailing = raw.slice(-1); raw = raw.slice(0, -1); }
 
     const lower = raw.toLowerCase();
-
-    if (dirMap[lower]) {
-      return dirMap[lower] + trailing;
-    }
-
-    if (suffixMap[lower]) {
-      return suffixMap[lower] + trailing;
-    }
-
-    // If it's something with a digit (apt numbers, etc.) keep as-is (plus trailing)
-    if (/\d/.test(raw)) {
-      return raw + trailing;
-    }
-
-    // Default: title case the word
+    if (dirMap[lower]) return dirMap[lower] + trailing;
+    if (suffixMap[lower]) return suffixMap[lower] + trailing;
+    if (/\d/.test(raw)) return raw + trailing;
     return titleCaseWord(raw) + trailing;
   });
 
   return out.join(" ");
 }
 
-// ========== UI elements for reveal vs signup ==========
-
+// ===== UI elements for reveal vs signup =====
 const revealSection = document.getElementById("revealSection");
 const signupSection = document.getElementById("signupSection");
 
 db.collection("settings").doc("global").onSnapshot((snap) => {
   let revealEnabled = false;
-  if (snap.exists) {
-    const d = snap.data();
-    revealEnabled = !!d.revealEnabled;
-  }
+  if (snap.exists) revealEnabled = !!(snap.data() || {}).revealEnabled;
+
   if (revealEnabled) {
     revealSection.style.display = "block";
     signupSection.style.display = "none";
@@ -1169,8 +746,7 @@ db.collection("settings").doc("global").onSnapshot((snap) => {
   console.error("settings/global listener error:", err);
 });
 
-// ========== SIGN-UP LOGIC ==========
-
+// ===== SIGN-UP LOGIC =====
 const showSignupBtn = document.getElementById("showSignupBtn");
 const signupForm = document.getElementById("signupForm");
 const signupStatus = document.getElementById("signupStatus");
@@ -1198,9 +774,7 @@ signupForm.addEventListener("submit", async (e) => {
     signupStatus.classList.add("error");
     return;
   }
-  
 
-  // Normalize/format name + address for display/storage
   name = formatName(name);
   street = formatStreet(street);
   city = formatCity(city);
@@ -1231,20 +805,14 @@ signupForm.addEventListener("submit", async (e) => {
       assignedAt: null
     });
 
-     // ✅ SUCCESS MESSAGE (this is the part you were missing)
-    signupStatus.innerHTML = `
-      ✅ <strong>Sign-up successful!</strong><br>`
-      ;
+    signupStatus.innerHTML = `✅ <strong>Sign-up successful!</strong><br>`;
     signupStatus.classList.add("success");
 
-    // Hide/reset form after message is set
     signupForm.reset();
     signupForm.style.display = "none";
     showSignupBtn.style.display = "inline-block";
 
-    // Open payment a moment later so the message renders first
     setTimeout(() => openPayment(payment), 150);
-
   } catch (err) {
     console.error(err);
     signupStatus.textContent = "Error saving sign-up. Please try again or contact the organizer.";
@@ -1252,8 +820,7 @@ signupForm.addEventListener("submit", async (e) => {
   }
 });
 
-// ========== REVEAL MATCH + TRACKING (after assignments generated) ==========
-
+// ===== REVEAL MATCH + TRACKING =====
 const revealCodeInput = document.getElementById("revealCodeInput");
 const revealBtn = document.getElementById("revealBtn");
 const revealStatus = document.getElementById("revealStatus");
@@ -1275,23 +842,19 @@ async function loadIncomingTracking(myDocId) {
       .get();
 
     if (snap.empty) {
-      incomingTrackingDisplay.textContent =
-        "Tracking number for the box coming to you: (not submitted yet)";
+      incomingTrackingDisplay.textContent = "Tracking number for the box coming to you: (not submitted yet)";
       return;
     }
 
     const d = snap.docs[0].data();
     if (d.trackingSubmitted && d.trackingNumber) {
-      incomingTrackingDisplay.textContent =
-        "Tracking number for the box coming to you: " + d.trackingNumber;
+      incomingTrackingDisplay.textContent = "Tracking number for the box coming to you: " + d.trackingNumber;
     } else {
-      incomingTrackingDisplay.textContent =
-        "Tracking number for the box coming to you: (not submitted yet)";
+      incomingTrackingDisplay.textContent = "Tracking number for the box coming to you: (not submitted yet)";
     }
   } catch (err) {
     console.error(err);
-    incomingTrackingDisplay.textContent =
-      "Unable to load tracking for your incoming package right now.";
+    incomingTrackingDisplay.textContent = "Unable to load tracking for your incoming package right now.";
   }
 }
 
@@ -1315,18 +878,14 @@ async function revealMatch() {
 
   try {
     const settingsSnap = await db.collection("settings").doc("global").get();
-    const revealEnabled = settingsSnap.exists && !!settingsSnap.data().revealEnabled;
+    const revealEnabled = settingsSnap.exists && !!(settingsSnap.data() || {}).revealEnabled;
     if (!revealEnabled) {
       revealStatus.textContent = "Assignments are not revealed yet. Please wait for the organizer to enable reveal.";
       revealStatus.classList.add("error");
       return;
     }
 
-    const snap = await db.collection("signups")
-      .where("code", "==", code)
-      .limit(1)
-      .get();
-
+    const snap = await db.collection("signups").where("code", "==", code).limit(1).get();
     if (snap.empty) {
       revealStatus.textContent = "No sign-up found with that code. Double-check or contact the organizer.";
       revealStatus.classList.add("error");
@@ -1341,8 +900,7 @@ async function revealMatch() {
     const toAddr = d.assignedToAddressFull || d.assignedToAddress || "";
 
     if (!toName || !toAddr) {
-      revealStatus.textContent =
-        "You are signed up, but assignments are not ready yet. Please contact the organizer.";
+      revealStatus.textContent = "You are signed up, but assignments are not ready yet. Please contact the organizer.";
       revealStatus.classList.add("error");
       return;
     }
@@ -1354,23 +912,19 @@ async function revealMatch() {
       `<div><strong>Hello ${d.name}!</strong></div>` +
       `<div style="margin-top:6px;">For this Rock Exchange, you'll be sending rocks to:</div>` +
       `<div style="margin-top:6px;padding-left:8px;"><strong>${toName}</strong><br>${toAddr}</div>` +
-      `<div style="margin-top:10px;font-size:12px;color:#ccc;">` +
+      `<div style="margin-top:10px;font-size:12px;color:#475569;">` +
       `Please mail your box on or before Dec. 12. Submit a valid tracking number and I will refund your deposit.` +
       `</div>` +
-      `<div style="margin-top:6px;font-size:12px;color:#ccc;">` +
-      `Thank you for being part of this Exchange!` +
-      `</div>`;
+      `<div style="margin-top:6px;font-size:12px;color:#475569;">Thank you for being part of this Exchange!</div>`;
 
     revealResultCard.style.display = "block";
     revealResultCard.classList.remove("fade-in");
     void revealResultCard.offsetWidth;
     revealResultCard.classList.add("fade-in");
 
-    // Show tracking section & prefill if exists
     trackingInput.value = d.trackingNumber || "";
     trackingSection.style.display = "block";
 
-    // Load tracking for incoming package
     await loadIncomingTracking(doc.id);
   } catch (err) {
     console.error(err);
@@ -1380,11 +934,8 @@ async function revealMatch() {
 }
 
 revealBtn.addEventListener("click", revealMatch);
-revealCodeInput.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") revealMatch();
-});
+revealCodeInput.addEventListener("keyup", (e) => { if (e.key === "Enter") revealMatch(); });
 
-// Submit tracking (for the box they are sending)
 submitTrackingBtn.addEventListener("click", async () => {
   trackingStatus.textContent = "";
   trackingStatus.className = "status";
@@ -1412,7 +963,6 @@ submitTrackingBtn.addEventListener("click", async () => {
     trackingStatus.textContent = "Tracking number submitted. Thank you!";
     trackingStatus.classList.add("success");
 
-    // Also refresh incoming tracking display in case this user is also someone's recipient
     await loadIncomingTracking(currentRevealDocId);
   } catch (err) {
     console.error(err);
@@ -1421,12 +971,10 @@ submitTrackingBtn.addEventListener("click", async () => {
   }
 });
 
-// ========== REAL-TIME LISTENERS FOR PUBLIC + ADMIN TABLES ==========
-
+// ===== REAL-TIME LISTENERS FOR PUBLIC + ADMIN TABLES =====
 function fullStateName(code) {
   const c = (code || "").toUpperCase().trim();
   const map = {
-    // US
     AL:"Alabama", AK:"Alaska", AZ:"Arizona", AR:"Arkansas", CA:"California",
     CO:"Colorado", CT:"Connecticut", DE:"Delaware", FL:"Florida", GA:"Georgia",
     HI:"Hawaii", ID:"Idaho", IL:"Illinois", IN:"Indiana", IA:"Iowa",
@@ -1438,10 +986,8 @@ function fullStateName(code) {
     SD:"South Dakota", TN:"Tennessee", TX:"Texas", UT:"Utah", VT:"Vermont",
     VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
     DC:"District of Columbia",
-
-    // Canada
     AB:"Alberta", BC:"British Columbia", MB:"Manitoba", NB:"New Brunswick",
-    NL:"Newfoundland and Labrador", NS:"Nova Scotia", NT:"Northwest Territories",
+    "NL":"Newfoundland and Labrador", NS:"Nova Scotia", NT:"Northwest Territories",
     NU:"Nunavut", ON:"Ontario", PE:"Prince Edward Island", QC:"Quebec",
     SK:"Saskatchewan", YT:"Yukon"
   };
@@ -1473,7 +1019,6 @@ db.collection("signups")
       const addressFull = d.addressFull || d.address || "";
       const code = d.code || "";
 
-      // ===== Public row (NO payment method) =====
       const trPub = document.createElement("tr");
       trPub.innerHTML = `
         <td>${idx}</td>
@@ -1487,7 +1032,6 @@ db.collection("signups")
       `;
       rowsPublic.push(trPub);
 
-      // ===== Admin row (keep payment method + tracking) =====
       const trAdmin = document.createElement("tr");
       trAdmin.setAttribute("data-id", doc.id);
       trAdmin.innerHTML = `
@@ -1504,7 +1048,7 @@ db.collection("signups")
         </td>
         <td>${trackingNumber ? trackingNumber : "—"}</td>
         <td>
-          <button class="btn-small btn-danger btn-delete">Delete</button>
+          <button class="btn-small btn-danger btn-delete" type="button">Delete</button>
         </td>
       `;
       rowsAdmin.push(trAdmin);
@@ -1521,83 +1065,23 @@ db.collection("signups")
     console.error("Error listening to signups:", err);
   });
 
-  // ========== ADMIN PANEL (GOOGLE ADMIN SIGN-IN) ==========
-
-  // These IDs must exist in your HTML:
-  ///  - adminPanel       (the admin UI container)
-  ///  - adminLoginBtn    (button to sign in)
-  ///  - adminLogoutBtn   (button to sign out)
-
-  const adminPanel = document.getElementById("adminPanel");
-  const adminLoginBtn = document.getElementById("adminLoginBtn");
-  const adminLogoutBtn = document.getElementById("adminLogoutBtn");
- 
-  // Default UI state (signed out)
-  if (adminPanel) adminPanel.style.display = "none";
-  if (adminLoginBtn) adminLoginBtn.style.display = "inline-block";
-  if (adminLogoutBtn) adminLogoutBtn.style.display = "none";
-
-// Show/hide admin card content
-toggleAdminBtn.addEventListener("click", () => {
-  const hidden = adminLocked.style.display === "none" && adminUnlocked.style.display === "none";
-  if (hidden) {
-    adminLocked.style.display = "block";
-    toggleAdminBtn.textContent = "Hide Admin Panel";
-  } else {
-    adminLocked.style.display = "none";
-    adminUnlocked.style.display = "none";
-    toggleAdminBtn.textContent = "Show Admin Panel";
-  }
-});
-
-// Initially show locked admin
-adminLocked.style.display = "block";
-adminUnlocked.style.display = "none";
-toggleAdminBtn.textContent = "Hide Admin Panel";
-
-adminUnlockBtn.addEventListener("click", () => {
-  const entered = adminCodeInput.value.trim();
-  adminLockStatus.textContent = "";
-  adminLockStatus.className = "status";
-
-  if (!entered) {
-    adminLockStatus.textContent = "Please enter the admin code.";
-    adminLockStatus.classList.add("error");
-    return;
-  }
-
-  if (entered !== ADMIN_CODE) {
-    adminLockStatus.textContent = "Incorrect admin code.";
-    adminLockStatus.classList.add("error");
-    return;
-  }
-
-  adminLockStatus.textContent = "Admin unlocked.";
-  adminLockStatus.classList.add("success");
-
-  adminLocked.style.display = "none";
-  adminUnlocked.style.display = "block";
-});
-
-// ========== ADMIN: APPROVE & DELETE HANDLERS ==========
-
 function attachAdminRowHandlers() {
   const rows = Array.from(adminTableBody.querySelectorAll("tr"));
   rows.forEach(row => {
     const docId = row.getAttribute("data-id");
     if (!docId) return;
 
-    // Approve badge
     const approveBadge = row.querySelector(".badge.clickable");
     if (approveBadge) {
       approveBadge.addEventListener("click", async () => {
+        // only allow if signed in
+        if (!auth.currentUser) return;
+
         const alreadyApproved = approveBadge.classList.contains("badge-approved");
         if (alreadyApproved) return;
 
         try {
-          await db.collection("signups").doc(docId).update({
-            depositApproved: true
-          });
+          await db.collection("signups").doc(docId).update({ depositApproved: true });
           adminStatus.textContent = "Deposit approved.";
           adminStatus.className = "status success";
         } catch (err) {
@@ -1608,10 +1092,10 @@ function attachAdminRowHandlers() {
       });
     }
 
-    // Delete button
     const deleteBtn = row.querySelector(".btn-delete");
     if (deleteBtn) {
       deleteBtn.addEventListener("click", async () => {
+        if (!auth.currentUser) return;
         const confirmed = confirm("Delete this sign-up? This cannot be undone.");
         if (!confirmed) return;
 
@@ -1629,17 +1113,15 @@ function attachAdminRowHandlers() {
   });
 }
 
-// ========== ASSIGNMENTS PREVIEW (ADMIN) ==========
-
+// ===== ASSIGNMENTS PREVIEW (ADMIN) =====
 const generatePreviewBtn = document.getElementById("generatePreviewBtn");
 const commitAssignmentsBtn = document.getElementById("commitAssignmentsBtn");
 const previewTableBody = document.getElementById("previewTableBody");
 
-let previewParticipants = null;   // { id, name, addressFull, stateCode, region }
-let previewAssignments = null;    // [{ fromIndex, toIndex }]
+let previewParticipants = null;
+let previewAssignments = null;
 let selectedPreviewFromIndices = new Set();
 
-// Simple shuffle helper
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -1648,7 +1130,6 @@ function shuffle(arr) {
   return arr;
 }
 
-// Generate full assignments (one-way, avoid self, regions, 2-cycles)
 function generateAssignments(participants) {
   const n = participants.length;
   if (n < 2) return null;
@@ -1668,16 +1149,12 @@ function generateAssignments(participants) {
       if (i === j) selfSend++;
       const a = participants[i];
       const b = participants[j];
-      if (a.region !== "Unknown" && b.region !== "Unknown" && a.region === b.region) {
-        regionConf++;
-      }
+      if (a.region !== "Unknown" && b.region !== "Unknown" && a.region === b.region) regionConf++;
     }
 
     for (let i = 0; i < n; i++) {
       const j = perm[i];
-      if (j > i && perm[j] === i) {
-        twoCycles++;
-      }
+      if (j > i && perm[j] === i) twoCycles++;
     }
 
     return selfSend * 10000 + twoCycles * 100 + regionConf;
@@ -1696,42 +1173,24 @@ function generateAssignments(participants) {
 
   if (!bestPerm) return null;
 
-  // Final safety: fix any self-sends
   for (let i = 0; i < n; i++) {
     if (bestPerm[i] === i) {
-      let swapWith = -1;
-      for (let j = 0; j < n; j++) {
-        if (j === i) continue;
-        if (bestPerm[j] === j) continue;
-        if (bestPerm[j] === i) continue;
-        swapWith = j;
-        break;
-      }
-      if (swapWith === -1) {
-        const j = (i + 1) % n;
-        [bestPerm[i], bestPerm[j]] = [bestPerm[j], bestPerm[i]];
-      } else {
-        [bestPerm[i], bestPerm[swapWith]] = [bestPerm[swapWith], bestPerm[i]];
-      }
+      const j = (i + 1) % n;
+      [bestPerm[i], bestPerm[j]] = [bestPerm[j], bestPerm[i]];
     }
   }
 
   const assignments = [];
-  for (let i = 0; i < n; i++) {
-    assignments.push({ fromIndex: i, toIndex: bestPerm[i] });
-  }
+  for (let i = 0; i < n; i++) assignments.push({ fromIndex: i, toIndex: bestPerm[i] });
   return assignments;
 }
 
-// Re-roll only a subset of senders, keeping others fixed
 function rerollSubsetAssignments(participants, assignments, selectedFromIdxArr) {
   const n = participants.length;
   if (selectedFromIdxArr.length < 2) return false;
 
   const dest = new Array(n);
-  for (let i = 0; i < n; i++) {
-    dest[i] = assignments[i].toIndex;
-  }
+  for (let i = 0; i < n; i++) dest[i] = assignments[i].toIndex;
 
   const S = selectedFromIdxArr;
   const m = S.length;
@@ -1758,16 +1217,12 @@ function rerollSubsetAssignments(participants, assignments, selectedFromIdxArr) 
       if (i === j) selfSend++;
       const a = participants[i];
       const b = participants[j];
-      if (a.region !== "Unknown" && b.region !== "Unknown" && a.region === b.region) {
-        regionConf++;
-      }
+      if (a.region !== "Unknown" && b.region !== "Unknown" && a.region === b.region) regionConf++;
     }
 
     for (let i = 0; i < n; i++) {
       const j = tempDest[i];
-      if (j > i && tempDest[j] === i) {
-        twoCycles++;
-      }
+      if (j > i && tempDest[j] === i) twoCycles++;
     }
 
     return selfSend * 10000 + twoCycles * 100 + regionConf;
@@ -1777,15 +1232,11 @@ function rerollSubsetAssignments(participants, assignments, selectedFromIdxArr) 
     const perm = [...Array(m).keys()];
     shuffle(perm);
 
-    // quick self-send check
     let bad = false;
     for (let k = 0; k < m; k++) {
       const fromIdx = S[k];
       const toIdx = pool[perm[k]];
-      if (toIdx === fromIdx) {
-        bad = true;
-        break;
-      }
+      if (toIdx === fromIdx) { bad = true; break; }
     }
     if (bad) continue;
 
@@ -1805,14 +1256,10 @@ function rerollSubsetAssignments(participants, assignments, selectedFromIdxArr) 
     dest[fromIdx] = toIdx;
   }
 
-  for (let i = 0; i < n; i++) {
-    assignments[i].toIndex = dest[i];
-  }
-
+  for (let i = 0; i < n; i++) assignments[i].toIndex = dest[i];
   return true;
 }
 
-// Render preview table: separate Sender / arrow / Receiver columns
 function renderPreviewTable(participants, assignments) {
   previewTableBody.innerHTML = "";
   selectedPreviewFromIndices.clear();
@@ -1852,27 +1299,23 @@ function attachPreviewRowHandlers() {
   });
 }
 
-// Helper to compare participant ID sets
 function sameParticipantSet(oldList, newList) {
   if (!oldList) return false;
   if (oldList.length !== newList.length) return false;
   const oldIds = oldList.map(p => p.id).sort();
   const newIds = newList.map(p => p.id).sort();
-  for (let i = 0; i < oldIds.length; i++) {
-    if (oldIds[i] !== newIds[i]) return false;
-  }
+  for (let i = 0; i < oldIds.length; i++) if (oldIds[i] !== newIds[i]) return false;
   return true;
 }
 
 generatePreviewBtn.addEventListener("click", async () => {
+  if (!auth.currentUser) return;
+
   adminStatus.textContent = "";
   adminStatus.className = "status";
 
   try {
-    // Always fetch current approved participants
-    const snap = await db.collection("signups")
-      .where("depositApproved", "==", true)
-      .get();
+    const snap = await db.collection("signups").where("depositApproved", "==", true).get();
 
     if (snap.size < 2) {
       adminStatus.textContent = "Need at least 2 approved participants to generate assignments.";
@@ -1898,7 +1341,6 @@ generatePreviewBtn.addEventListener("click", async () => {
       });
     });
 
-    // If we have no preview yet, or participants changed (new/removed), rebuild fully
     if (!previewParticipants || !previewAssignments || !sameParticipantSet(previewParticipants, participantsNow)) {
       const assignments = generateAssignments(participantsNow);
       if (!assignments) {
@@ -1915,18 +1357,15 @@ generatePreviewBtn.addEventListener("click", async () => {
       previewAssignments = assignments;
       renderPreviewTable(previewParticipants, previewAssignments);
 
-      adminStatus.textContent =
-        "Preview assignments generated from current approved list. Click rows to highlight, then re-roll or commit.";
+      adminStatus.textContent = "Preview assignments generated. Click rows, then click Preview Assignments again to re-roll.";
       adminStatus.classList.add("success");
       return;
     }
 
-    // Participants are the same set as before; use re-roll logic with current preview
-    previewParticipants = participantsNow; // keep up-to-date reference
+    previewParticipants = participantsNow;
     const selected = Array.from(selectedPreviewFromIndices);
 
     if (selected.length === 0) {
-      // Re-roll entire list
       const assignments = generateAssignments(previewParticipants);
       if (!assignments) {
         adminStatus.textContent = "Could not re-roll assignments. Try again.";
@@ -1938,14 +1377,12 @@ generatePreviewBtn.addEventListener("click", async () => {
       adminStatus.textContent = "Entire preview re-rolled.";
       adminStatus.classList.add("success");
     } else if (selected.length === 1) {
-      adminStatus.textContent =
-        "Select at least 2 rows to re-roll subset; a single assignment can't be changed alone because all matches are connected.";
+      adminStatus.textContent = "Select at least 2 rows to re-roll subset.";
       adminStatus.classList.add("error");
     } else {
       const ok = rerollSubsetAssignments(previewParticipants, previewAssignments, selected);
       if (!ok) {
-        adminStatus.textContent =
-          "Could not find a better subset re-roll with current constraints. Try selecting a different group or re-rolling all.";
+        adminStatus.textContent = "Could not find a better subset re-roll. Try selecting a different group or re-roll all.";
         adminStatus.classList.add("error");
         return;
       }
@@ -1961,6 +1398,8 @@ generatePreviewBtn.addEventListener("click", async () => {
 });
 
 commitAssignmentsBtn.addEventListener("click", async () => {
+  if (!auth.currentUser) return;
+
   adminStatus.textContent = "";
   adminStatus.className = "status";
 
@@ -2000,7 +1439,7 @@ commitAssignmentsBtn.addEventListener("click", async () => {
 
     await batch.commit();
 
-    adminStatus.textContent = "Assignments committed and reveal has been enabled. Participants can now use their codes.";
+    adminStatus.textContent = "Assignments committed and reveal has been enabled.";
     adminStatus.classList.add("success");
   } catch (err) {
     console.error(err);
@@ -2009,11 +1448,12 @@ commitAssignmentsBtn.addEventListener("click", async () => {
   }
 });
 
-// ========== CLEAR ALL SIGN-UPS & RESET (ADMIN) ==========
-
+// ===== CLEAR ALL SIGN-UPS & RESET (ADMIN) =====
 const clearAllBtn = document.getElementById("clearAllBtn");
 
 clearAllBtn.addEventListener("click", async () => {
+  if (!auth.currentUser) return;
+
   adminStatus.textContent = "";
   adminStatus.className = "status";
 
@@ -2028,15 +1468,10 @@ clearAllBtn.addEventListener("click", async () => {
     const snap = await db.collection("signups").get();
     const batch = db.batch();
 
-    snap.forEach(doc => {
-      batch.delete(doc.ref);
-    });
+    snap.forEach(doc => batch.delete(doc.ref));
 
     const settingsRef = db.collection("settings").doc("global");
-    batch.set(settingsRef, {
-      revealEnabled: false,
-      lastAssignmentsAt: null
-    }, { merge: true });
+    batch.set(settingsRef, { revealEnabled: false, lastAssignmentsAt: null }, { merge: true });
 
     await batch.commit();
 
@@ -2062,14 +1497,9 @@ function openPayment(method) {
   };
 
   const url = links[method];
-  if (url) {
-    window.open(url, "_blank", "noopener,noreferrer");
-  } else {
-    alert("Payment link not set for: " + method);
-  }
+  if (url) window.open(url, "_blank", "noopener,noreferrer");
+  else alert("Payment link not set for: " + method);
 }
-
-
 </script>
 </body>
 </html>
