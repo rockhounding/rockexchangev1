@@ -847,8 +847,9 @@
       <button id="toggleAdminBtn" class="btn-secondary" style="margin-top:0;">Hide Admin Panel</button>
     </div>
 
-    <button id="adminLoginBtn" onclick="adminLogin()">Admin Sign In</button>
-    <button id="adminLogoutBtn" onclick="adminLogout()" style="display:none;">Sign Out</button>
+    <button id="adminLoginBtn" type="button" onclick="adminLogin()">Admin Sign In</button>
+    <button id="adminLogoutBtn" type="button" onclick="adminLogout()" style="display:none;">Sign Out</button>
+
     
     <!-- Locked view -->
     <div id="adminLocked" style="margin-top:12px; display:block;">
@@ -948,11 +949,33 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
+let adminLoginInProgress = false;
+
 function adminLogin() {
+  if (adminLoginInProgress) return; // prevent double popup
+  adminLoginInProgress = true;
+
+  const btn = document.getElementById("adminLoginBtn");
+  if (btn) btn.disabled = true;
+
   auth.signInWithPopup(provider)
     .catch(err => {
       console.error("Admin login failed:", err);
+
+      if (err && err.code === "auth/popup-blocked") {
+        alert("Popup was blocked. Allow popups for this site, then try again.");
+        return;
+      }
+      if (err && err.code === "auth/cancelled-popup-request") {
+        // happens if a second sign-in starts; safe to ignore
+        return;
+      }
+
       alert("Admin sign-in failed.");
+    })
+    .finally(() => {
+      adminLoginInProgress = false;
+      if (btn) btn.disabled = false;
     });
 }
 
