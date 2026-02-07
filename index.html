@@ -841,23 +841,23 @@
   </div>
 
   <!-- Admin section -->
+  <!-- Admin section -->
+<div id="adminPanel">
   <div class="card">
     <div class="admin-header">
       <h2>Organizer(Admin)</h2>
-      <button id="toggleAdminBtn" class="btn-secondary" style="margin-top:0;">Hide Admin Panel</button>
+      <button id="toggleAdminBtn" class="btn-secondary" type="button" style="margin-top:0;">Hide Admin Panel</button>
     </div>
 
     <button id="adminLoginBtn" type="button" onclick="adminLogin()">Admin Sign In</button>
     <button id="adminLogoutBtn" type="button" onclick="adminLogout()" style="display:none;">Sign Out</button>
 
-    
     <!-- Locked view -->
     <div id="adminLocked" style="margin-top:12px; display:block;">
       <div class="code-row" style="justify-content:flex-start;">
         <label for="adminCodeInput" style="font-size:13px;">Admin code:</label>
-        <input id="adminCodeInput" type="password" maxlength="16" placeholder="••••"
-               autocomplete="new-password">
-        <button id="adminUnlockBtn">Unlock</button>
+        <input id="adminCodeInput" type="password" maxlength="16" placeholder="••••" autocomplete="new-password">
+        <button id="adminUnlockBtn" type="button">Unlock</button>
       </div>
       <div id="adminLockStatus" class="status" style="text-align:left;"></div>
       <div class="admin-small-note">
@@ -870,6 +870,7 @@
       <h3 style="margin:0 0 6px 0;font-size:15px;">Sign-Ups (Admin View)</h3>
       <p class="admin-small-note">
         Click “Approved” to mark deposits as verified.<br>
+      </p>
 
       <table class="list-table" id="adminTable">
         <thead>
@@ -885,22 +886,21 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody id="adminTableBody">
-        </tbody>
+        <tbody id="adminTableBody"></tbody>
       </table>
 
       <!-- Assignments preview -->
       <h3 style="margin:16px 0 6px 0;font-size:15px;">Assignments Preview (Approved Only)</h3>
       <p class="admin-small-note">
         Preview Assignments: to generate assignments click matches you don't like and re generate until your satisfied
-        <strong>approved</strong> 
+        <strong>approved</strong>
         <br>
-        Commit Assignments: sends the assignments to the reveal portion and starts the exchange 
+        Commit Assignments: sends the assignments to the reveal portion and starts the exchange
       </p>
 
       <div style="margin-bottom:8px;">
-        <button id="generatePreviewBtn" class="btn-secondary">🎲 Preview Assignments</button>
-        <button id="commitAssignmentsBtn" class="btn-secondary">✅ Commit Assigments</button>
+        <button id="generatePreviewBtn" class="btn-secondary" type="button">🎲 Preview Assignments</button>
+        <button id="commitAssignmentsBtn" class="btn-secondary" type="button">✅ Commit Assigments</button>
       </div>
 
       <table class="list-table" id="previewTable">
@@ -912,12 +912,11 @@
             <th>Receiver</th>
           </tr>
         </thead>
-        <tbody id="previewTableBody">
-        </tbody>
+        <tbody id="previewTableBody"></tbody>
       </table>
 
       <div style="margin-top:10px;">
-        <button id="clearAllBtn" class="btn-danger">🗑 Clear All Sign-Ups & Reset</button>
+        <button id="clearAllBtn" class="btn-danger" type="button">🗑 Clear All Sign-Ups &amp; Reset</button>
       </div>
 
       <div id="adminStatus" class="status" style="text-align:left;"></div>
@@ -945,10 +944,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
 // ===== Admin Google Sign-In (COMPAT) =====
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
+// This prevents the "conflicting popup" + "pending promise" errors
 let adminLoginInProgress = false;
 
 function adminLogin() {
@@ -967,7 +968,8 @@ function adminLogin() {
         return;
       }
       if (err && err.code === "auth/cancelled-popup-request") {
-        // happens if a second sign-in starts; safe to ignore
+        // Happens if another sign-in was triggered while one was in progress.
+        // Safe to ignore.
         return;
       }
 
@@ -991,7 +993,7 @@ auth.onAuthStateChanged(user => {
   if (user) {
     console.log("Admin signed in:", user.email);
 
-    // Show admin UI
+    // Show admin UI (container is always present now)
     if (adminPanel) adminPanel.style.display = "block";
     if (loginBtn) loginBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
