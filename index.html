@@ -1495,11 +1495,7 @@ db.collection("signups")
   const adminPanel = document.getElementById("adminPanel");
   const adminLoginBtn = document.getElementById("adminLoginBtn");
   const adminLogoutBtn = document.getElementById("adminLogoutBtn");
-
-  // IMPORTANT: only attach listeners if the buttons exist (prevents null crashes)
-  if (adminLoginBtn) adminLoginBtn.addEventListener("click", adminLogin);
-  if (adminLogoutBtn) adminLogoutBtn.addEventListener("click", adminLogout);
-
+ 
   // Default UI state (signed out)
   if (adminPanel) adminPanel.style.display = "none";
   if (adminLoginBtn) adminLoginBtn.style.display = "inline-block";
