@@ -699,6 +699,11 @@ document.getElementById("toggleAdminBtn").addEventListener("click", () => {
 });
 
 // auth gating: signed in must also be allowlisted in appConfig/admins
+auth.onAuthStateChanged(user => {
+  console.log("AUTH STATE:", user ? user.email : "SIGNED OUT");
+  // ...rest of your code...
+});
+
 auth.onAuthStateChanged(async (user) => {
   if (!user) {
     setAdminUI({ signedIn: false, authorized: false });
